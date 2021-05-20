@@ -22,6 +22,13 @@ For more, see the [API documentation](docs/API.md).
 
 ## Development
 
+Please note that helix3 functions require authentication. in order to deploy manually and run the deploy tests, 
+add the authorization to the test headers to your `.env` file. eg:
+
+```
+HLX_TEST_HEADERS={"authorization": "token xxxxxxxxxxyyyyyyyyyzzzzzzz"}
+```
+
 ### Deploying Helix JSON Filter
 
 All commits to main that pass the testing will be deployed automatically. All commits to branches that will pass the testing will get commited as `/helix-services/json-filter@ci<num>` and tagged with the CI build number.

@@ -22,13 +22,19 @@ const { expect } = chai;
 
 createTargets().forEach((target) => {
   describe(`Post-Deploy Tests (${target.title()})`, () => {
-    it('Purge a blog post', async () => {
-      await chai
+    it('invokes the function', async () => {
+      const req = chai
         .request(target.host())
-        .get(target.urlPath())
+        .get(`${target.urlPath()}`);
+
+      // todo: move to utils ?
+      if (process.env.HLX_TEST_HEADERS) {
+        const headers = JSON.parse(process.env.HLX_TEST_HEADERS);
+        Object.entries(headers).forEach(([key, value]) => req.set(key, value));
+      }
+      await req
         .then((response) => {
-          expect(response).to.have.status(200);
-          expect.fail('Not ready yet');
+          expect(response).to.have.status(400);
         }).catch((e) => {
           throw e;
         });

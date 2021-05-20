@@ -11,12 +11,13 @@
     "lint": "eslint .",
     "semantic-release": "semantic-release",
     "build": "hedy -v",
-    "deploy": "hedy -v --deploy --test",
-    "deploy-sequences": "hedy --no-build -no-hints -l major -l minor --cleanup-patch 1w --cleanup-minor 1m --cleanup-major 1y",
-    "deploy-ci": "hedy -v --deploy --test --pkgVersion=ci$CIRCLE_BUILD_NUM -l ci --cleanup-ci 24h"
+    "deploy": "unset HLX_AWS_ROLE; hedy -v --deploy --test",
+    "deploy-sequences": "unset HLX_AWS_ROLE; hedy --no-build -no-hints -l major -l minor --cleanup-patch=1w --cleanup-minor=1w --cleanup-major=1y --cleanup-ci=24h",
+    "deploy-ci": "unset HLX_AWS_ROLE; hedy -v --deploy --test --pkgVersion=ci$CIRCLE_BUILD_NUM -l ci --cleanup-ci=24h"
   },
   "wsk": {
     "target": "aws",
+    "awsRole": "arn:aws:iam::118435662149:role/helix-service-role-s3-rw",
     "name": "helix3/json-filter@${version}",
     "memory": 512,
     "testUrl": "/_status_check/healthcheck.json"
@@ -36,7 +37,8 @@
     "@adobe/helix-shared-wrap": "1.0.0",
     "@adobe/helix-status": "9.1.7",
     "@adobe/helix-universal": "1.5.1",
-    "@adobe/helix-universal-logger": "1.0.4"
+    "@adobe/helix-universal-logger": "1.0.4",
+    "@aws-sdk/client-s3": "3.14.0"
   },
   "devDependencies": {
     "@adobe/eslint-config-helix": "1.1.5",
