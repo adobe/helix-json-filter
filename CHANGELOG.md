@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/adobe/helix-json-filter/compare/v1.0.0...v1.1.0) (2021-06-01)
+
+
+### Features
+
+* implement the json-filter ([#6](https://github.com/adobe/helix-json-filter/issues/6)) ([1290080](https://github.com/adobe/helix-json-filter/commit/12900804b53206ef517681d693276d47e14a8ad0))
+
 # 1.0.0 (2021-05-31)
 
 
