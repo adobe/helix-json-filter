@@ -10,6 +10,7 @@
  * governing permissions and limitations under the License.
  */
 const { Response } = require('@adobe/helix-universal');
+const { cleanupHeaderValue } = require('@adobe/helix-shared-utils');
 
 const TYPE_KEY = ':type';
 
@@ -55,9 +56,13 @@ function jsonFilter(query, log) {
           sheetNames.push(name);
         });
       if (sheetNames.length === 0) {
-        log.info(`filtered result does not contain selected sheet(s): ${selectedSheet.join(',')}`);
+        const msg = `filtered result does not contain selected sheet(s): ${selectedSheet.join(',')}`;
+        log.info(msg);
         return new Response('', {
           status: 404,
+          headers: {
+            'x-error': cleanupHeaderValue(msg),
+          },
         });
       } else if (sheetNames.length === 1) {
         body = sheets[sheetNames[0]];
@@ -69,14 +74,11 @@ function jsonFilter(query, log) {
           [NAMES_KEY]: sheetNames,
         };
       }
-      body[TYPE_KEY] = type;
     }
+    body[TYPE_KEY] = type;
     return new Response(JSON.stringify(body), {
       headers: {
         'content-type': 'application/json',
-        'x-helix-data-type': type,
-        'x-helix-data-version': '3',
-        'x-helix-sheet-names': sheetNames.join(','),
       },
     });
   };

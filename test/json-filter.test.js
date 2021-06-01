@@ -13,32 +13,32 @@
 /* eslint-env mocha */
 
 const assert = require('assert');
+const fs = require('fs').promises;
+const path = require('path');
 const { Response } = require('@adobe/helix-universal');
 const jsonFilter = require('../src/json-filter.js');
 
-const TEST_DATA = [];
-for (let i = 0; i < 50; i += 1) {
-  const row = {};
-  TEST_DATA.push(row);
-  for (let j = 0; j < 4; j += 1) {
-    row[`col${j}`] = `cell(${i},${j})`;
-  }
-}
-
-const TEST_SINGLE_SHEET = {
-  offset: 0,
-  limit: TEST_DATA.length,
-  total: TEST_DATA.length,
-  data: TEST_DATA,
-};
-
-const TEST_MULTI_SHEET = {
-  ':names': ['sheet1', 'sheet2'],
-  sheet1: TEST_SINGLE_SHEET,
-  sheet2: TEST_SINGLE_SHEET,
-};
-
 describe('JSON Filter test', () => {
+  let TEST_DATA;
+  let TEST_SINGLE_SHEET;
+  let TEST_MULTI_SHEET;
+
+  before(async () => {
+    TEST_DATA = JSON.parse(await fs.readFile(path.resolve(__dirname, 'fixtures', 'test-data.json'), 'utf-8'));
+    TEST_SINGLE_SHEET = {
+      offset: 0,
+      limit: TEST_DATA.length,
+      total: TEST_DATA.length,
+      data: TEST_DATA,
+    };
+
+    TEST_MULTI_SHEET = {
+      ':names': ['sheet1', 'sheet2'],
+      sheet1: TEST_SINGLE_SHEET,
+      sheet2: TEST_SINGLE_SHEET,
+    };
+  });
+
   it('returns same response for single sheet with no query', async () => {
     const dataResponse = new Response(JSON.stringify(TEST_SINGLE_SHEET), {
       headers: {
@@ -54,12 +54,10 @@ describe('JSON Filter test', () => {
       limit: TEST_DATA.length,
       total: TEST_DATA.length,
       data: TEST_DATA,
+      ':type': 'sheet',
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': '',
     });
   });
 
@@ -92,9 +90,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'multi-sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': 'sheet1,sheet2',
     });
   });
 
@@ -109,6 +104,7 @@ describe('JSON Filter test', () => {
     const resp = await filter(dataResponse);
     assert.strictEqual(resp.status, 200);
     assert.deepStrictEqual(await resp.json(), {
+      ':type': 'sheet',
       offset: 5,
       limit: 10,
       total: TEST_DATA.length,
@@ -116,9 +112,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': '',
     });
   });
 
@@ -133,6 +126,7 @@ describe('JSON Filter test', () => {
     const resp = await filter(dataResponse);
     assert.strictEqual(resp.status, 200);
     assert.deepStrictEqual(await resp.json(), {
+      ':type': 'sheet',
       offset: 5,
       limit: TEST_DATA.length - 5,
       total: TEST_DATA.length,
@@ -140,9 +134,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': '',
     });
   });
 
@@ -157,6 +148,7 @@ describe('JSON Filter test', () => {
     const resp = await filter(dataResponse);
     assert.strictEqual(resp.status, 200);
     assert.deepStrictEqual(await resp.json(), {
+      ':type': 'sheet',
       offset: 0,
       limit: 5,
       total: TEST_DATA.length,
@@ -164,9 +156,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': '',
     });
   });
 
@@ -199,9 +188,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'multi-sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': 'sheet1,sheet2',
     });
   });
 
@@ -224,9 +210,6 @@ describe('JSON Filter test', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': 'sheet1',
     });
   });
 
@@ -240,5 +223,6 @@ describe('JSON Filter test', () => {
     const filter = jsonFilter({ sheet: 'foo' }, console);
     const resp = await filter(dataResponse);
     assert.strictEqual(resp.status, 404);
+    assert.strictEqual(resp.headers.get('x-error'), 'filtered result does not contain selected sheet(s): foo');
   });
 });

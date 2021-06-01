@@ -89,6 +89,7 @@ describe('Index Tests', () => {
     });
     assert.strictEqual(resp.status, 200);
     assert.deepStrictEqual(await resp.json(), {
+      ':type': 'sheet',
       offset: 5,
       limit: 10,
       total: TEST_DATA.length,
@@ -96,9 +97,6 @@ describe('Index Tests', () => {
     });
     assert.deepStrictEqual(resp.headers.plain(), {
       'content-type': 'application/json',
-      'x-helix-data-type': 'sheet',
-      'x-helix-data-version': '3',
-      'x-helix-sheet-names': '',
     });
   });
 
