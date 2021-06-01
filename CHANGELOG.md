@@ -1,3 +1,10 @@
+# 1.0.0 (2021-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-universal to v1.6.1 ([#10](https://github.com/adobe/helix-json-filter/issues/10)) ([985aee2](https://github.com/adobe/helix-json-filter/commit/985aee2a9916b2f18e5ced7c4ca49584b719d805))
+
 ## [2.0.23](https://github.com/adobe/helix-service/compare/v2.0.22...v2.0.23) (2021-05-11)
 
 
