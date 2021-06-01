@@ -149,67 +149,67 @@ createTargets().forEach((target) => {
           throw e;
         });
     }).timeout(50000);
-  });
 
-  it('selects wrong sheet from a multi sheet', async () => {
-    const path = `${target.urlPath()}${MULTI_SHEET_PATH}?${querystring.encode({
-      ...DEFAULT_PARAMS,
-      limit: 1,
-      sheet: 'does-not-exist',
-    })}`;
+    it('selects wrong sheet from a multi sheet', async () => {
+      const path = `${target.urlPath()}${MULTI_SHEET_PATH}?${querystring.encode({
+        ...DEFAULT_PARAMS,
+        limit: 1,
+        sheet: 'does-not-exist',
+      })}`;
 
-    const req = chai
-      .request(target.host())
-      .get(path);
+      const req = chai
+        .request(target.host())
+        .get(path);
 
-    if (process.env.HLX_TEST_HEADERS) {
-      const headers = JSON.parse(process.env.HLX_TEST_HEADERS);
-      Object.entries(headers).forEach(([key, value]) => req.set(key, value));
-    }
-    await req
-      .then((response) => {
-        expect(response).to.have.status(404);
-        expect(response.headers['x-error']).to.eql('filtered result does not contain selected sheet(s): does-not-exist');
-      }).catch((e) => {
-        throw e;
-      });
-  }).timeout(50000);
-
-  /**
-   * Since we don't know the sheet name of the original single sheet, using a sheet selector
-   * is irrelevant.
-   * alternatively, it could always respond with 404 if a sheet selector is specified.
-   */
-  it('selects sheet from a single sheet', async () => {
-    const path = `${target.urlPath()}${SINGLE_SHEET_PATH}?${querystring.encode({
-      ...DEFAULT_PARAMS,
-      limit: 1,
-      sheet: 'does-not-exist',
-    })}`;
-
-    const req = chai
-      .request(target.host())
-      .get(path);
-
-    // todo: move to utils ?
-    if (process.env.HLX_TEST_HEADERS) {
-      const headers = JSON.parse(process.env.HLX_TEST_HEADERS);
-      Object.entries(headers).forEach(([key, value]) => req.set(key, value));
-    }
-    await req
-      .then((response) => {
-        expect(response).to.have.status(200);
-        expect(response.body).to.deep.eql({
-          ':type': 'sheet',
-          data: [
-            { Code: 'JP', Country: 'Japan', Number: 3 },
-          ],
-          limit: 1,
-          offset: 0,
-          total: 6,
+      if (process.env.HLX_TEST_HEADERS) {
+        const headers = JSON.parse(process.env.HLX_TEST_HEADERS);
+        Object.entries(headers).forEach(([key, value]) => req.set(key, value));
+      }
+      await req
+        .then((response) => {
+          expect(response).to.have.status(404);
+          expect(response.headers['x-error']).to.eql('filtered result does not contain selected sheet(s): does-not-exist');
+        }).catch((e) => {
+          throw e;
         });
-      }).catch((e) => {
-        throw e;
-      });
-  }).timeout(50000);
+    }).timeout(50000);
+
+    /**
+     * Since we don't know the sheet name of the original single sheet, using a sheet selector
+     * is irrelevant.
+     * alternatively, it could always respond with 404 if a sheet selector is specified.
+     */
+    it('selects sheet from a single sheet', async () => {
+      const path = `${target.urlPath()}${SINGLE_SHEET_PATH}?${querystring.encode({
+        ...DEFAULT_PARAMS,
+        limit: 1,
+        sheet: 'does-not-exist',
+      })}`;
+
+      const req = chai
+        .request(target.host())
+        .get(path);
+
+      // todo: move to utils ?
+      if (process.env.HLX_TEST_HEADERS) {
+        const headers = JSON.parse(process.env.HLX_TEST_HEADERS);
+        Object.entries(headers).forEach(([key, value]) => req.set(key, value));
+      }
+      await req
+        .then((response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.deep.eql({
+            ':type': 'sheet',
+            data: [
+              { Code: 'JP', Country: 'Japan', Number: 3 },
+            ],
+            limit: 1,
+            offset: 0,
+            total: 6,
+          });
+        }).catch((e) => {
+          throw e;
+        });
+    }).timeout(50000);
+  });
 });
