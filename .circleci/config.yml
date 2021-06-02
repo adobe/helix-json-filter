@@ -74,11 +74,12 @@ jobs:
       # see https://circleci.com/orbs/registry/orb/adobe/helix-post-deploy
       # for more available parameters
       - helix-post-deploy/monitoring:
+          targets: universal, aws
+          action_package: helix3
           statuspage_name: Helix JSON Filter
           statuspage_group: Delivery
           newrelic_group_policy: Delivery Repeated Failure
           incubator: true # remove only when promoting service to production
-          aws: true
 
   branch-deploy:
     executor: node12
