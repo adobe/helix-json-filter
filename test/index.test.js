@@ -291,7 +291,7 @@ describe('Index Tests', () => {
       }),
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=-1'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=countries&offset=2&limit=1'), {
       log: console,
       pathInfo: {
         suffix: '/index.json',
