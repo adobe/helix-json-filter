@@ -233,4 +233,70 @@ describe('Index Tests', () => {
     });
     assert.strictEqual(resp.status, 200);
   });
+
+  const testjson = {
+    countries: [
+      {
+        Code: 'JP',
+        Country: 'Japan',
+        Number: 3,
+      },
+      {
+        Code: 'DE',
+        Country: 'Germany',
+        Number: 5,
+      },
+      {
+        Code: 'US',
+        Country: 'USA',
+        Number: 7,
+      },
+      {
+        Code: 'CH',
+        Country: 'Switzerland',
+        Number: 27,
+      },
+      {
+        Code: 'FR',
+        Country: 'France',
+        Number: 99,
+      },
+      {
+        Code: 'AUS',
+        Country: 'Australia',
+        Number: 12,
+      },
+    ],
+    abc: [
+      {
+        A: 112,
+        B: 224,
+        C: 135,
+      },
+      {
+        A: 2244,
+        B: 234,
+        C: 53,
+      },
+    ],
+  };
+
+  it('test', async () => {
+    const { main: proxyMain } = proxyquire('../src/index.js', {
+      './fetch-s3.js': async () => new Response(JSON.stringify(testjson), {
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+        },
+      }),
+    });
+
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=-1'), {
+      log: console,
+      pathInfo: {
+        suffix: '/index.json',
+      },
+    });
+    assert.strictEqual(resp.status, 500);
+  });
 });
