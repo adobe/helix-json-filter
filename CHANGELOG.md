@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/adobe/helix-json-filter/compare/v1.1.0...v1.1.1) (2021-06-05)
+
+
+### Bug Fixes
+
+* handle invalid data better ([18261a7](https://github.com/adobe/helix-json-filter/commit/18261a734e1d952e3571de9f0e5f35b373e8ad7f)), closes [#15](https://github.com/adobe/helix-json-filter/issues/15)
+
 # [1.1.0](https://github.com/adobe/helix-json-filter/compare/v1.0.0...v1.1.0) (2021-06-01)
 
 
