@@ -47,6 +47,17 @@ function jsonFilter(query, log) {
     if (Array.isArray(json.data)) {
       body = filter(json);
     } else {
+      if (!json[NAMES_KEY]) {
+        const msg = 'multisheet data invalid. missing ":names" property.';
+        log.info(msg);
+        return new Response('', {
+          status: 404,
+          headers: {
+            'x-error': cleanupHeaderValue(msg),
+          },
+        });
+      }
+
       const selectedSheet = Array.isArray(sheet) ? sheet : [sheet];
       const sheets = {};
       json[NAMES_KEY]
