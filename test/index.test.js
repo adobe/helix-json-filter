@@ -244,7 +244,27 @@ describe('Index Tests', () => {
         suffix: '/index.json',
       },
     });
-    assert.strictEqual(resp.status, 404);
+    assert.strictEqual(resp.status, 502);
     assert.strictEqual(resp.headers.get('x-error'), 'multisheet data invalid. missing ":names" property.');
+  });
+
+  it('handles corrupt json', async () => {
+    const { main: proxyMain } = proxyquire('../src/index.js', {
+      './fetch-s3.js': async () => new Response('this is not json!', {
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+        },
+      }),
+    });
+
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=countries&offset=2&limit=1'), {
+      log: console,
+      pathInfo: {
+        suffix: '/index.json',
+      },
+    });
+    assert.strictEqual(resp.status, 502);
+    assert.strictEqual(resp.headers.get('x-error'), 'failed to parse json: Unexpected token h in JSON at position 1');
   });
 });

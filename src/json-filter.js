@@ -39,7 +39,19 @@ function jsonFilter(query, log) {
   }
 
   return async (dataResponse) => {
-    const json = await dataResponse.json();
+    let json;
+    try {
+      json = await dataResponse.json();
+    } catch (e) {
+      const msg = `failed to parse json: ${e.message}`;
+      log.error(msg);
+      return new Response('', {
+        status: 502,
+        headers: {
+          'x-error': cleanupHeaderValue(msg),
+        },
+      });
+    }
     let body;
     let type = 'sheet';
     const sheetNames = [];
@@ -49,9 +61,9 @@ function jsonFilter(query, log) {
     } else {
       if (!json[NAMES_KEY]) {
         const msg = 'multisheet data invalid. missing ":names" property.';
-        log.info(msg);
+        log.error(msg);
         return new Response('', {
-          status: 404,
+          status: 502,
           headers: {
             'x-error': cleanupHeaderValue(msg),
           },
