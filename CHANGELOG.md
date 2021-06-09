@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/adobe/helix-json-filter/compare/v1.1.2...v1.1.3) (2021-06-09)
+
+
+### Bug Fixes
+
+* send 502 for wrong underlying data ([#20](https://github.com/adobe/helix-json-filter/issues/20)) ([4170979](https://github.com/adobe/helix-json-filter/commit/41709796d0c74810456ac6a5c21b038c0a08f5d0)), closes [#18](https://github.com/adobe/helix-json-filter/issues/18)
+
 ## [1.1.2](https://github.com/adobe/helix-json-filter/compare/v1.1.1...v1.1.2) (2021-06-06)
 
 
