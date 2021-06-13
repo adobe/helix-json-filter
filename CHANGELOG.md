@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/adobe/helix-json-filter/compare/v1.1.4...v1.1.5) (2021-06-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-status to v9.1.8 ([#23](https://github.com/adobe/helix-json-filter/issues/23)) ([ea6ea07](https://github.com/adobe/helix-json-filter/commit/ea6ea07000622565a51a28ae703fcd91fc34a4ae))
+
 ## [1.1.4](https://github.com/adobe/helix-json-filter/compare/v1.1.3...v1.1.4) (2021-06-13)
 
 
