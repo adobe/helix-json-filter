@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/adobe/helix-json-filter/compare/v1.1.3...v1.1.4) (2021-06-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-fetch to v2.3.0 ([#21](https://github.com/adobe/helix-json-filter/issues/21)) ([9caf82b](https://github.com/adobe/helix-json-filter/commit/9caf82b88e1e5fce3a54bbed6aee4e21488c801d))
+
 ## [1.1.3](https://github.com/adobe/helix-json-filter/compare/v1.1.2...v1.1.3) (2021-06-09)
 
 
