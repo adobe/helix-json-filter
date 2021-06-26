@@ -39,7 +39,7 @@
     "@adobe/helix-status": "9.1.8",
     "@adobe/helix-universal": "1.6.3",
     "@adobe/helix-universal-logger": "1.0.5",
-    "@aws-sdk/client-s3": "3.18.0"
+    "@aws-sdk/client-s3": "3.19.0"
   },
   "devDependencies": {
     "@adobe/eslint-config-helix": "1.1.5",
