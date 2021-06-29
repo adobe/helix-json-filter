@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/adobe/helix-json-filter/compare/v1.1.5...v1.1.6) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @aws-sdk/client-s3 to v3.19.0 ([8df1bb1](https://github.com/adobe/helix-json-filter/commit/8df1bb17104e118e4cf79e2946765125771bfa6a))
+
 ## [1.1.5](https://github.com/adobe/helix-json-filter/compare/v1.1.4...v1.1.5) (2021-06-13)
 
 
