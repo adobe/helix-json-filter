@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/adobe/helix-json-filter/compare/v1.1.9...v1.1.10) (2021-07-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-universal to v1.6.5 ([#31](https://github.com/adobe/helix-json-filter/issues/31)) ([95f4951](https://github.com/adobe/helix-json-filter/commit/95f4951dad464ec07113bbaab384ebed10ece44e))
+
 ## [1.1.9](https://github.com/adobe/helix-json-filter/compare/v1.1.8...v1.1.9) (2021-07-11)
 
 
