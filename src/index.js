@@ -67,8 +67,8 @@ async function main(request, context) {
   }, log);
 
   // fetch data from content bus
-  const key = `${contentBusPartition}${suffix}`;
-  const dataResponse = await fetchS3(contentBusId, key, log);
+  const key = `${contentBusId}/${contentBusPartition}${suffix}`;
+  const dataResponse = await fetchS3('helix-content-bus', key, log);
   if (dataResponse.status !== 200) {
     return dataResponse;
   }
