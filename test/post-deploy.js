@@ -27,7 +27,7 @@ const MULTI_SHEET_PATH = '/data-embed-unit-tests/multisheet.json';
 
 const DEFAULT_PARAMS = {
   // https://adobe.sharepoint.com/sites/cg-helix/Shared%20Documents/Forms/AllItems.aspx
-  contentBusId: 'h3d4b1d4ea6d84b0229bce7cf6806b0bb3470489ab8205a13f75cfe518fa7',
+  contentBusId: 'd4b1d4ea6d84b0229bce7cf6806b0bb3470489ab8205a13f75cfe518fa7',
 };
 
 createTargets().forEach((target) => {
