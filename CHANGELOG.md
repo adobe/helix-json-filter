@@ -1,3 +1,10 @@
+## [1.1.15](https://github.com/adobe/helix-json-filter/compare/v1.1.14...v1.1.15) (2021-07-30)
+
+
+### Bug Fixes
+
+* **deps:** update adobe fixes ([#41](https://github.com/adobe/helix-json-filter/issues/41)) ([af0a624](https://github.com/adobe/helix-json-filter/commit/af0a6240455644a874e04c3da8ad679885816348))
+
 ## [1.1.14](https://github.com/adobe/helix-json-filter/compare/v1.1.13...v1.1.14) (2021-07-30)
 
 
