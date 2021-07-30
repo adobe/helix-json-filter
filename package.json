@@ -33,12 +33,12 @@
   },
   "homepage": "https://github.com/adobe/helix-json-filter#readme",
   "dependencies": {
-    "@adobe/helix-fetch": "2.4.0",
+    "@adobe/helix-fetch": "2.4.1",
     "@adobe/helix-shared-utils": "1.0.3",
     "@adobe/helix-shared-wrap": "1.0.0",
-    "@adobe/helix-status": "9.2.0",
+    "@adobe/helix-status": "9.2.1",
     "@adobe/helix-universal": "1.6.5",
-    "@adobe/helix-universal-logger": "1.0.5",
+    "@adobe/helix-universal-logger": "1.0.6",
     "@aws-sdk/client-s3": "3.23.0"
   },
   "devDependencies": {
