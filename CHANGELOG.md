@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/adobe/helix-json-filter/compare/v1.1.16...v2.0.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* use single bucket for content bus ([#37](https://github.com/adobe/helix-json-filter/issues/37)) ([a22fe07](https://github.com/adobe/helix-json-filter/commit/a22fe0708a767c4e5d85d918fb9d06718e45b2b0)), closes [#36](https://github.com/adobe/helix-json-filter/issues/36)
+
+
+### BREAKING CHANGES
+
+* content-bus id no longer addresses the bucket 
+  but is a prefix for the key in the helix-content-bus bucket
+
 ## [1.1.16](https://github.com/adobe/helix-json-filter/compare/v1.1.15...v1.1.16) (2021-08-01)
 
 
