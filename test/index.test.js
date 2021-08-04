@@ -64,8 +64,8 @@ describe('Index Tests', () => {
   it('fetches correct content', async () => {
     const { main: proxyMain } = proxyquire('../src/index.js', {
       './fetch-s3.js': async (bucketId, key) => {
-        assert.strictEqual(bucketId, 'foobar');
-        assert.strictEqual(key, 'preview/index.json');
+        assert.strictEqual(bucketId, 'helix-content-bus');
+        assert.strictEqual(key, 'foobar/preview/index.json');
         return new Response(JSON.stringify(TEST_SINGLE_SHEET), {
           status: 200,
           headers: {
