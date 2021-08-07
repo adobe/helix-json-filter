@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/adobe/helix-json-filter/compare/v2.0.0...v2.0.1) (2021-08-07)
+
+
+### Bug Fixes
+
+* unly use aws monitor target ([#44](https://github.com/adobe/helix-json-filter/issues/44)) ([f5ece76](https://github.com/adobe/helix-json-filter/commit/f5ece76208d9d82b28b2dd797c326c799833de99))
+
 # [2.0.0](https://github.com/adobe/helix-json-filter/compare/v1.1.16...v2.0.0) (2021-08-04)
 
 
