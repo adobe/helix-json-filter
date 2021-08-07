@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/adobe/helix-json-filter/compare/v2.0.1...v2.0.2) (2021-08-07)
+
+
+### Bug Fixes
+
+* **deps:** update external fixes ([#45](https://github.com/adobe/helix-json-filter/issues/45)) ([a2667b5](https://github.com/adobe/helix-json-filter/commit/a2667b57a158547bc388aa2840a51cddc63e5dd6))
+
 ## [2.0.1](https://github.com/adobe/helix-json-filter/compare/v2.0.0...v2.0.1) (2021-08-07)
 
 
