@@ -42,7 +42,6 @@ async function main(request, context) {
   }
   const {
     contentBusId,
-    contentBusPartition = 'live',
     limit,
     offset,
     sheet,
@@ -67,7 +66,7 @@ async function main(request, context) {
   }, log);
 
   // fetch data from content bus
-  const key = `${contentBusId}/${contentBusPartition}${suffix}`;
+  const key = `${contentBusId}${suffix}`;
   const dataResponse = await fetchS3('helix-content-bus', key, log);
   if (dataResponse.status !== 200) {
     return dataResponse;
@@ -79,5 +78,4 @@ async function main(request, context) {
 
 module.exports.main = wrap(main)
   .with(statusWrap)
-  .with(logger.trace)
   .with(logger);

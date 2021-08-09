@@ -45,7 +45,7 @@ describe('Index Tests', () => {
     const result = await main(new Request('https://json-filter.com/?contentBusId=foobar'), {
       log: console,
       pathInfo: {
-        suffix: '/index.md',
+        suffix: '/preview/index.md',
       },
     });
     assert.strictEqual(result.status, 400);
@@ -55,7 +55,7 @@ describe('Index Tests', () => {
     const result = await main(new Request('https://json-filter.com/?contentBusId=foobar'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(result.status, 400);
@@ -75,10 +75,10 @@ describe('Index Tests', () => {
       },
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=10&offset=5'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&limit=10&offset=5'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 200);
@@ -99,10 +99,10 @@ describe('Index Tests', () => {
       './fetch-s3.js': async () => new Response('', { status: 404 }),
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=10&offset=5'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&limit=10&offset=5'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 404);
@@ -119,10 +119,10 @@ describe('Index Tests', () => {
       './json-filter.js': () => () => new Response('', { status: 404 }),
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=10&offset=5'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&limit=10&offset=5'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 404);
@@ -144,10 +144,10 @@ describe('Index Tests', () => {
       },
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&limit=10'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&limit=10'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 200);
@@ -169,10 +169,10 @@ describe('Index Tests', () => {
       },
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&offset=10'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&offset=10'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 200);
@@ -194,10 +194,10 @@ describe('Index Tests', () => {
       },
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=sheet1&sheet=sheet2'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&sheet=sheet1&sheet=sheet2'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 200);
@@ -219,10 +219,10 @@ describe('Index Tests', () => {
       },
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=sheet1'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&sheet=sheet1'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 200);
@@ -238,10 +238,10 @@ describe('Index Tests', () => {
       }),
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=countries&offset=2&limit=1'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&sheet=countries&offset=2&limit=1'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 502);
@@ -258,10 +258,10 @@ describe('Index Tests', () => {
       }),
     });
 
-    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&contentBusPartition=preview&sheet=countries&offset=2&limit=1'), {
+    const resp = await proxyMain(new Request('https://json-filter.com/?contentBusId=foobar&sheet=countries&offset=2&limit=1'), {
       log: console,
       pathInfo: {
-        suffix: '/index.json',
+        suffix: '/preview/index.json',
       },
     });
     assert.strictEqual(resp.status, 502);
