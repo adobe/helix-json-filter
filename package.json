@@ -1,6 +1,6 @@
 {
   "name": "@adobe/helix-json-filter",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "private": true,
   "description": "Helix JSON Filter",
   "main": "src/index.js",

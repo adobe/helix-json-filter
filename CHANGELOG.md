@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/adobe/helix-json-filter/compare/v2.0.2...v3.0.0) (2021-08-10)
+
+
+### Features
+
+* use new path format with contentBusPartition as path segment ([#47](https://github.com/adobe/helix-json-filter/issues/47)) ([ea44d86](https://github.com/adobe/helix-json-filter/commit/ea44d86eab8bfd30322b9e4891981f0805dfae60))
+
+
+### BREAKING CHANGES
+
+* in order to have a similar path format as the
+  pipeline-serivice, the json-filter requires now also the
+  contentBusPartition as path segment, eg: /live/path
+
 ## [2.0.2](https://github.com/adobe/helix-json-filter/compare/v2.0.1...v2.0.2) (2021-08-07)
 
 
