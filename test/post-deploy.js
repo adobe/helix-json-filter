@@ -33,7 +33,7 @@ const DEFAULT_PARAMS = {
 createTargets().forEach((target) => {
   describe(`Post-Deploy Tests (${target.title()})`, () => {
     it('filters a single sheet', async () => {
-      const path = `${target.urlPath()}${SINGLE_SHEET_PATH}?${querystring.encode({
+      const path = `${target.urlPath()}/live${SINGLE_SHEET_PATH}?${querystring.encode({
         ...DEFAULT_PARAMS,
         limit: 4,
       })}`;
@@ -68,7 +68,7 @@ createTargets().forEach((target) => {
     }).timeout(50000);
 
     it('filters a multi sheet', async () => {
-      const path = `${target.urlPath()}${MULTI_SHEET_PATH}?${querystring.encode({
+      const path = `${target.urlPath()}/live${MULTI_SHEET_PATH}?${querystring.encode({
         ...DEFAULT_PARAMS,
         limit: 1,
       })}`;
@@ -119,7 +119,7 @@ createTargets().forEach((target) => {
     }).timeout(50000);
 
     it('selects single sheet from a multi sheet', async () => {
-      const path = `${target.urlPath()}${MULTI_SHEET_PATH}?${querystring.encode({
+      const path = `${target.urlPath()}/live${MULTI_SHEET_PATH}?${querystring.encode({
         ...DEFAULT_PARAMS,
         limit: 1,
         sheet: '日本',
@@ -151,7 +151,7 @@ createTargets().forEach((target) => {
     }).timeout(50000);
 
     it('selects wrong sheet from a multi sheet', async () => {
-      const path = `${target.urlPath()}${MULTI_SHEET_PATH}?${querystring.encode({
+      const path = `${target.urlPath()}/live${MULTI_SHEET_PATH}?${querystring.encode({
         ...DEFAULT_PARAMS,
         limit: 1,
         sheet: 'does-not-exist',
@@ -180,7 +180,7 @@ createTargets().forEach((target) => {
      * alternatively, it could always respond with 404 if a sheet selector is specified.
      */
     it('selects sheet from a single sheet', async () => {
-      const path = `${target.urlPath()}${SINGLE_SHEET_PATH}?${querystring.encode({
+      const path = `${target.urlPath()}/live${SINGLE_SHEET_PATH}?${querystring.encode({
         ...DEFAULT_PARAMS,
         limit: 1,
         sheet: 'does-not-exist',
